@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 #Admin Controller Routes
 Route::get('admin','AdminController@admin');
 
+#BACKEND ROUTES
+
+#----------------------------------------------------------
 #Category Controller Routes
 Route::get('category/create','CategoryController@create');
 Route::post('category/save','CategoryController@save');
@@ -55,6 +58,26 @@ Route::get('banner/edit/{id}','BannerController@edit');
 Route::post('banner/update','BannerController@update');
 Route::get('banner/delete/{id}','BannerController@delete');
 
+#Backend Contact pages
+Route::get('contact/display','ContactController@display');
+Route::get('contact/delete/{id}','ContactController@delete');
+
+#Backend Order detail pages
+
+Route::get('order/display','AdminController@orders');
+#----------------------------------------------------------
+
+#FRONEND ROUTES
+
+#----------------------------------------------------------
+
+#Front Auth Routes
+Route::get('front/login','UserController@login');
+Route::post('loginsave','UserController@loginsave');
+Route::get('front/register','UserController@register');
+Route::post('front/regsave','UserController@regsave');
+Route::get('front/logout','UserController@logout');
+
 #Front Controller Routes
 Route::get('/','FrontController@index');
 Route::get('front/productdetail/{id}','FrontController@productdetail');
@@ -62,6 +85,7 @@ Route::get('front/category/{category_id}','FrontController@category');
 
 #My account
 Route::get('account','FrontController@account');
+Route::get('order/{order_id}','FrontController@orderdetails');
 
 #Add to cart
 Route::post('addtocart','FrontController@addtocart');
@@ -78,22 +102,16 @@ Route::post('place_order','FrontController@place_order');
 #Order Confirmation page
 Route::get('thanks/{order_id}','FrontController@orderconfirm');
 
-#Front Auth Routes
-Route::get('front/login','UserController@login');
-Route::post('loginsave','UserController@loginsave');
-Route::get('front/register','UserController@register');
-Route::post('front/regsave','UserController@regsave');
-Route::get('front/logout','UserController@logout');
-
 #about
 Route::get('about','FrontController@about'); 
 
 #Contact us page
 Route::get('contact','FrontController@contact');
 Route::post('savecontact','FrontController@savecontact');
-#Backend Contact pages
-Route::get('contact/display','ContactController@display');
-Route::get('contact/delete/{id}','ContactController@delete');
+
+
+
+#----------------------------------------------------------
 
 Auth::routes();
 

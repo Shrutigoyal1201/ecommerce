@@ -214,10 +214,19 @@ class FrontController extends Controller
     {
         $useremail=Auth::user()->email;
 
-        $data=Order::where('useremail',$useremail)->get();
-        $productdata=Orderproduct::where('useremail',$useremail)->get();
-        
-        return view('front.account',compact('data','productdata'));
+        $data=Order::where('useremail',$useremail)->limit('1')->get();
+        $detail=Order::join('orderproducts','orders.id','=','orderproducts.order_id')->orderBy('order_id','desc')->get();
+       
+        return view('front.account',compact('data','detail'));
+    }
+
+    public function orderdetails($order_id)
+    {
+        $useremail=Auth::user()->email;
+
+        $data=Order::join('orderproducts','orders.id','=','orderproducts.order_id')->where('orders.id',$order_id)->get();
+       
+        return view('front.order',compact('data'));
     }
 
     public function about()

@@ -85,32 +85,38 @@
                             <h3>Orders</h3>
 
                             <div class="myaccount-table table-responsive text-center">
-                                <table class="table table-bordered">
-                                    <thead class="thead-light">
-                                        
-                                        <tr>
-                                            <th>Product Image</th>
-                                            <th>Name</th>
-                                            <th>Quantity</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                       
-                                    <tbody>
-                                        
-                                        @foreach($productdata as $productdata)
-                                            
-                                        <tr>
-                                            <td class="col-md-3"><img src="{{url('/upload/'.$productdata->product_image)}}" class="col-sm-5"></td>
-                                            <td>{{$productdata->product_name}}</td>
-                                            <td>{{$productdata->product_quantity}}</td>
-                                            <td><a href="shopping-cart.html" class="ht-btn black-btn">View</a>
-                                            </td>
-                                            
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                    <div class="h-auto shadow-lg">
+
+                                        <h3 class="alert alert-info text-center mb-100">Order Details</h3>
+                                            @foreach($detail as $detail)
+                                                   
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <a href="{{url('order/'.$detail->order_id)}}"> 
+                                                        <img src="{{url('/upload/'.$detail->product_image)}}" class="col-md-4">
+                                                    </a>
+                                                </div>
+                                                
+                                               
+                                                <div class="col-md-3 mt-5">
+                                                     <a href="{{url('order/'.$detail->order_id)}}">{{$detail->product_name}}</a>
+                                                </div>
+                                                <div class="col-md-2 mt-5">
+                                                     Order Total :  {{$detail->grand_total}}
+                                                </div>
+                                                       
+                                                    
+                                                <div class="col-md-1 mt-5"> 
+                                                          <a href="{{url('order/'.$detail->order_id)}}" class="btn-info btn-lg text-light">View Details</a>
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+
+                                            @endforeach
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -200,16 +206,12 @@
                                             <h4>Password change</h4>
                                         </div>
 
-                                        <div class="col-12 mb-30">
-                                            <input id="current-pwd" placeholder="Current Password" type="password">
+                                        <div class="col-lg-6 col-12 mb-30">
+                                            <input id="new-pwd" placeholder="New Password" type="password" name='new_password'>
                                         </div>
 
                                         <div class="col-lg-6 col-12 mb-30">
-                                            <input id="new-pwd" placeholder="New Password" type="password">
-                                        </div>
-
-                                        <div class="col-lg-6 col-12 mb-30">
-                                            <input id="confirm-pwd" placeholder="Confirm Password" type="password">
+                                            <input id="confirm-pwd" placeholder="Confirm Password" type="password" name='confirm_new_password'>
                                         </div>
 
                                         <div class="col-12">
