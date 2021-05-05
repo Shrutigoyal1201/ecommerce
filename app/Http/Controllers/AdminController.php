@@ -27,5 +27,17 @@ class AdminController extends Controller
         $data=Order::join('orderproducts','orders.id','=','orderproducts.order_id')->orderBy('order_id','desc')->get();
         return view('admin.order.display',compact('data'));
     }
+    public function orderdetail($id)
+    {
+        $data=Order::find($id);
+        $productdata=Orderproduct::find($id);
+        return view('admin.order.view',compact('data','productdata'));
+    }
+    public function orderinvoice($id)
+    {
+        $data=Order::find($id);
+        $productdata=Orderproduct::find($id);
+        return view('admin.order.invoice',compact('data','productdata'));
+    }
 }
 

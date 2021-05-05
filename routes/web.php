@@ -63,8 +63,9 @@ Route::get('contact/display','ContactController@display');
 Route::get('contact/delete/{id}','ContactController@delete');
 
 #Backend Order detail pages
-
 Route::get('order/display','AdminController@orders');
+Route::get('order/view/{id}','AdminController@orderdetail');
+Route::get('order/invoice/{id}','AdminController@orderinvoice');
 #----------------------------------------------------------
 
 #FRONEND ROUTES
@@ -78,6 +79,11 @@ Route::get('front/register','UserController@register');
 Route::post('front/regsave','UserController@regsave');
 Route::get('front/logout','UserController@logout');
 
+#GOOGLE LOGIN
+Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+
 #Front Controller Routes
 Route::get('/','FrontController@index');
 Route::get('front/productdetail/{id}','FrontController@productdetail');
@@ -86,6 +92,7 @@ Route::get('front/category/{category_id}','FrontController@category');
 #My account
 Route::get('account','FrontController@account');
 Route::get('order/{order_id}','FrontController@orderdetails');
+Route::post('change-password', 'FrontController@changepassword')->name('change.password');
 
 #Add to cart
 Route::post('addtocart','FrontController@addtocart');

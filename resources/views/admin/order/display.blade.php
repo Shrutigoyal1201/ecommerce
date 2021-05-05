@@ -67,7 +67,7 @@
                      <td>{{$a->grand_total}}</td>
                       <td>
                         <a href="{{url('order/view/'.$a->id)}}" class="btn btn-sm  btn-outline-dark">Show</a>
-                        <a href="{{url('order/view/'.$a->id)}}" class="btn btn-sm btn-outline-dark">Invoice</a>
+                        <a href="{{url('order/invoice/'.$a->id)}}" class="btn btn-sm btn-outline-dark">Invoice</a>
                      </td>
                     </tr>
                    @endforeach

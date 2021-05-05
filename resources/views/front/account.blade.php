@@ -26,6 +26,14 @@
 <!-- breadcrumb-section end -->
 <!-- product tab start -->
 
+@if(session('message'))
+
+    <h4 class ="alert alert-success text-center">
+      {{session('message')}}
+    </h4>
+
+@endif
+
 <div class="my-account pt-80 pb-50">
     <div class="container">
         <div class="row">
@@ -185,14 +193,16 @@
                         </div>
                     </div>
                     <!-- Single Tab Content End -->
-
+                   
                     <!-- Single Tab Content Start -->
                     <div class="tab-pane fade active show" id="account-info" role="tabpanel">
                         <div class="myaccount-content">
                             <h3>Account Details</h3>
 
                             <div class="account-details-form">
-                                <form action="#">
+                                <form method="POST" action="{{ route('change.password') }}">
+                                    @csrf
+
                                     <div class="row">
                                         <div class="col-lg-6 col-12 mb-30">
                                             <input id="first-name" name="name" value="{{Auth::user()->name}}" placeholder="Name" type="text">
@@ -211,7 +221,7 @@
                                         </div>
 
                                         <div class="col-lg-6 col-12 mb-30">
-                                            <input id="confirm-pwd" placeholder="Confirm Password" type="password" name='confirm_new_password'>
+                                            <input id="confirm-pwd" placeholder="Confirm Password" type="password" name='new_confirm_password'>
                                         </div>
 
                                         <div class="col-12">

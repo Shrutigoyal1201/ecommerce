@@ -10,6 +10,7 @@ use App\Cart;
 use Session;
 use DB;
 use Auth;
+use Hash;
 use App\User;
 use App\Contact;
 use App\Order;
@@ -218,6 +219,18 @@ class FrontController extends Controller
         $detail=Order::join('orderproducts','orders.id','=','orderproducts.order_id')->orderBy('order_id','desc')->get();
        
         return view('front.account',compact('data','detail'));
+    }
+    
+    public function changepassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+   
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+   
+        return redirect('account')->with('message','Password changed successfully.');
     }
 
     public function orderdetails($order_id)
