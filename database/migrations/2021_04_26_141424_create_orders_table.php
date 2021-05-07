@@ -29,7 +29,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_status')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('grand_total')->nullable();
-            
+            $table->integer('transaction_id')->nullable();
             $table->timestamps();
         });
     }

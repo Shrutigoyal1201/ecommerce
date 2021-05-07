@@ -83,6 +83,16 @@ Route::get('front/logout','UserController@logout');
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
+#FACEBOOK LOGIN
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
+#FORGOT PASSWORD
+// Route::post('reset_password_without_token', 'AdminController@validatePasswordRequest');
+// Route::post('reset_password_with_token', 'AdminController@resetPassword');
+// Route::post('password/email', 'ForgotPasswordController@forgot');
+// Route::view('forgot_password', 'auth.reset_password')->name('password.reset');
+// Route::post('password/reset', 'ForgotPasswordController@reset');
 
 #Front Controller Routes
 Route::get('/','FrontController@index');
@@ -106,6 +116,9 @@ Route::get('checkout','FrontController@checkout');
 #Place order
 Route::post('place_order','FrontController@place_order');
 
+#Payment page for online payment
+Route::get('payment/{order_id}','FrontController@place_order');
+
 #Order Confirmation page
 Route::get('thanks/{order_id}','FrontController@orderconfirm');
 
@@ -122,5 +135,5 @@ Route::post('savecontact','FrontController@savecontact');
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('dashboard','AdminController@dashboard');

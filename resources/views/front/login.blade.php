@@ -61,11 +61,31 @@
                     </div>
                     <br>
 
-                    <center><a href="{{ url('auth/google') }}" style="margin-top: 20px;">
-                            <img src="https://img.icons8.com/color/452/google-logo.png" class="col-sm-1" ><br><strong>Login With Google</strong></i>  
-                    </a></center>
+                    <center>
+                        <div class="flex items-center justify-end mt-4">
+                        
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                </div>    
+                                <div class="col-md-2">
+                                    <a href="{{ url('auth/google') }}">
+                                        <img src="https://img.icons8.com/color/452/google-logo.png" class="col-sm-3" ><br><strong>Login With Google</strong>  
+                                    </a>
+                                </div>
+                                <div class="col-md-2">
+                                    {{-- Login with Facebook --}}
+                                    <a href="{{ url('login/facebook') }}">
+                                        <img src="https://iconarchive.com/download/i103484/paomedia/small-n-flat/social-facebook.ico" class="col-sm-3" ><br>
+                                        <strong>Login With Facebook</strong>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                            </div>
+                        </div>
+                    </center>
                     <br>
-                    <hr>
                     <div class="form-group row pb-3 text-center">
                         <div class="col-md-6 offset-md-3">
                             <div class="login-form-links">

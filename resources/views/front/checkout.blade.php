@@ -8,6 +8,15 @@
         <div class="row">
             <div class="col-lg-8 mb-30">
                 <div id="accordion">
+
+                    @if(session('message'))
+
+                         <p class ="alert alert-success">
+                          {{session('message')}}
+                         </p>
+                          
+                    @endif
+
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">

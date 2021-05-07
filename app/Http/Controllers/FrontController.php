@@ -188,11 +188,18 @@ class FrontController extends Controller
 
         if($cart)
         {
-            return redirect('thanks/'.$order_id)->with('message','Order details submitted sucessfully');
+            if($data->payment_method=='pay by cash on delivery')
+                {
+                    return redirect('thanks/'.$order_id)->with('message','Order details submitted sucessfully');
+                }
+            else
+                {
+                    return redirect('payment/'.$order_id)->with('message','Order details submitted sucessfully');
+                }
         }
         else
         {
-            return redirect('thanks/'.$order_id)->with('message','Order could not be placed :( Try again!');
+            return redirect('checkout')->with('message','Order could not be placed :( Try again!');
         }
     }
 

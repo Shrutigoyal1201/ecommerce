@@ -88,4 +88,37 @@ class LoginController extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+         try {
+    
+            $user = Socialite::driver('facebook')->stateless()->user();
+            $isUser = User::where('fb_id', $user->id)->first();
+     
+            if($isUser){
+                Auth::login($isUser);
+                return redirect('/');
+            }else{
+                $createUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'fb_id' => $user->id,
+                    'password' => encrypt('admin@123')
+                ]);
+    
+                Auth::login($createUser);
+                return redirect('/');
+            }
+    
+        } catch (Exception $exception) {
+            dd($exception->getMessage());
+        }
+
+    }
 }
